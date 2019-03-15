@@ -1,25 +1,36 @@
 package com.codecool.javabst;
 
+import com.codecool.javabst.modal.Node;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList<Integer> numbers = new ArrayList<>();
+        List<Node> nodes = new ArrayList<>();
+        nodes.add(new Node(12));
+        nodes.add(new Node(5));
+        nodes.add(new Node(36));
+        nodes.add(new Node(1));
+        nodes.add(new Node(3));
+        Node rootNode = new Node(6);
 
-        for (int i = 0; i < 50; i++) {
-            numbers.add(i * 2 + 5);
+        BinarySearchTree myTree = BinarySearchTree.build(nodes, rootNode);
+
+        for (Node node : myTree.nodeList) {
+            System.out.println(node.toString());
         }
+//        GraphPlotter graphPlotter = new GraphPlotter(nodes);
 
-        BinarySearchTree myTree = BinarySearchTree.build(numbers);
 
         // write some test code here
-        System.out.println(myTree.search(7)); // should be true
-        System.out.println(myTree.search(55)); // should be true
-        System.out.println(myTree.search(34535)); // should be false
+//        System.out.println(myTree.search(7)); // should be true
+//        System.out.println(myTree.search(55)); // should be true
+//        System.out.println(myTree.search(34535)); // should be false
 
 
         System.out.println("done");
