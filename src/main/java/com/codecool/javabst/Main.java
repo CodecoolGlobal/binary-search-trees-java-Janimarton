@@ -27,10 +27,10 @@ public class Main {
 //        GraphPlotter graphPlotter = new GraphPlotter(nodes);
 
 
-        // write some test code here
-//        System.out.println(myTree.search(7)); // should be true
-//        System.out.println(myTree.search(55)); // should be true
-//        System.out.println(myTree.search(34535)); // should be false
+//         write some test code here
+        System.out.println(myTree.search(new Node(1))); // should be true
+        System.out.println(myTree.search(new Node(12))); // should be true
+        System.out.println(myTree.search(new Node(4))); // should be false
 
 
         System.out.println("done");

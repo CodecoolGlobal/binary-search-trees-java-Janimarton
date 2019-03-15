@@ -43,9 +43,21 @@ public class BinarySearchTree {
         return current;
     }
 
-    public boolean search(Integer toFind) {
-        // TODO return true if the element has been found, false if its not in the tree.
-        return false;
+    public boolean search(Node toFind) {
+        // return true if the element has been found, false if its not in the tree.
+        return containsNodeRecursive(root, toFind);
+    }
+
+    private boolean containsNodeRecursive(Node current, Node searched) {
+        if (current == null) {
+            return false;
+        }
+        if (searched.getValue() == current.getValue()) {
+            return true;
+        }
+        return searched.getValue() < current.getValue()
+                ? containsNodeRecursive(current.getLeft(), searched)
+                : containsNodeRecursive(current.getRight(), searched);
     }
 
     public void remove(Integer toRemove) {
