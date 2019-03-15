@@ -22,6 +22,7 @@ public class BinarySearchTree {
 
     public void add(Node node) {
         root = addRecursive(root, node);
+        nodeList.clear();
         nodeList.add(root);
     }
 
@@ -60,8 +61,43 @@ public class BinarySearchTree {
                 : containsNodeRecursive(current.getRight(), searched);
     }
 
-    public void remove(Integer toRemove) {
-        // TODO removes an element. Throws an error if its not on the tree.
+    public void remove(Node toRemove) {
+        //  removes an element. Throws an error if its not on the tree.
+        root = removeRecursive(root, toRemove);
+
+    }
+
+    private Node removeRecursive(Node current, Node deleting) {
+        if (current == null) {
+            return null;
+        }
+
+        if (deleting.getValue() == current.getValue()) {
+            if (current.getLeft() == null && current.getRight() == null) {
+                return null;
+            }
+            if (current.getRight() == null) {
+                return current.getLeft();
+            }
+
+            if (current.getLeft() == null) {
+                return current.getRight();
+            }
+            Integer smallestValue = findSmallestValue(current.getRight());
+            current.setValue(smallestValue);
+            current.setRight(removeRecursive(current.getRight(), current));
+            return current;
+        }
+        if (deleting.getValue() < current.getValue()) {
+            current.setLeft(removeRecursive(current.getLeft(), deleting));
+            return current;
+        }
+        current.setRight(removeRecursive(current.getRight(), deleting));
+        return current;
+    }
+
+    private int findSmallestValue(Node root) {
+        return root.getLeft() == null ? root.getValue() : findSmallestValue(root.getLeft());
     }
 
 }
